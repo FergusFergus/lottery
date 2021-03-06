@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lottery</title>
+</head>
+
+
+<body>
+
+    <h1>LuckyBall Lottery!</h1>
+
+    <script>
+        // Come up with the winning numbers /////////////////////////////////
+        var nums = []
+
+        for (i = 0; i < 5; i++){
+            nums.push(Math.ceil(Math.random() * 48))
+        }
+        nums.sort()
+        nums.push(Math.ceil(Math.random() * 18))
+
+        // prompt the user for their numbers /////////////////////////////////
+        userNums = prompt("Please enter your 5 winning numbers: ").split(" ")
+        userLucky = prompt("Please enter your lucky ball number: ")
+        //userLucky = parseInt(userLucky)
+
+        // convert userNums to ints and sort ////////////////////////////////
+        for (i = 0; i < 5; i++){
+            userNums[i] = parseInt(userNums[i])
+        }
+        userNums.sort()
+
+
+        numMatch = 0
+        for (i = 0; i < 5; i++) {
+            if (nums[i] == userNums[i]) numMatch++;
+        }
+        luckyMatch = (userLucky == nums[5])
+
+        // print results /////////////////////////////////////////////////////
+        document.write("<p>The numbers you chose were: ")
+        for (i = 0; i < 5; i++){
+            document.write(userNums[i] + " ")
+        }
+        document.write("</p>")
+        document.write("<p>Your lucky ball number was: " + userLucky + "</p>")
+
+
+
+        document.write("<p>The winning numbers were: ")
+        for (i = 0; i < 5; i++){
+            document.write(nums[i] + " ")
+        }
+        document.write("</p>")
+        document.write("<p>The lucky ball number was: " + nums[5] + "</p>")
+
+        document.write("<p>You had " + numMatch + " matches and you ")
+        if (luckyMatch) {
+            document.write("guessed the lucky ball!</p>")
+        } else {
+            document.write("did not guess the lucky ball :(</p>")
+        }
+
+        if ((numMatch == 5) && (luckyMatch)) {
+            document.write("<p>Your prize is $7,000 a WEEK for LIFE!</p>")
+        } else if (numMatch == 5) {
+            document.write("<p>Your prize is $25,000 a YEAR for LIFE!</p>")
+        } else if ((numMatch == 4) && (luckyMatch)) {
+            document.write("<p>Your prize is $5,000!</p>")
+        } else if (numMatch == 4) {
+            document.write("<p>Your prize is $200!</p>")
+        } else if ((numMatch == 3) && (luckyMatch)) {
+            document.write("<p>Your prize is $150!</p>")
+        } else if (numMatch == 3) {
+            document.write("<p>Your prize is $20.</p>")
+        } else if ((numMatch == 2) && (luckyMatch)) {
+            document.write("<p>Your prize is $25.</p>")
+        } else if (numMatch == 2) {
+            document.write("<p>Your prize is $3.</p>")
+        } else if ((numMatch == 1) && (luckyMatch)) {
+            document.write("<p>Your prize is $6.</p>")
+        } else if (luckyMatch) {
+            document.write("<p>Your prize is $4.</p>")
+        } else {
+            document.write("<p>You do not get a prize.</p>")
+        }
+
+    </script>
+
+</body>
+
+</html>
